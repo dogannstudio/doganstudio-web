@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogan Studio | Game Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: white; font-family: sans-serif; }
+        .navbar { background-color: #000 !important; }
+        .hero-slider img { height: 500px; object-fit: cover; filter: brightness(0.7); }
+        .game-card { background: #1e1e1e; border: none; transition: 0.3s; }
+        .game-card:hover { transform: scale(1.05); }
+        .news-section { background: #1a1a1a; padding: 50px 0; }
+        footer { padding: 50px 0; border-top: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">DOGAN STUDIO</a>
+    </div>
+</nav>
+
+<div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner hero-slider">
+        <div class="carousel-item active">
+            <img src="https://via.placeholder.com/1920x600?text=Ucak+Simulasyonu+Gorseli" class="d-block w-100" alt="Oyun 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Yeni Projemiz: Gökyüzü Hakimiyeti</h2>
+                <p>Uçuþ mekanikleri üzerinde çalýþmaya devam ediyoruz.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1920x600?text=Stüdyodan+Görüntü" class="d-block w-100" alt="Oyun 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Dogan Studio Geliþiyor</h2>
+                <p>Mobil oyun dünyasýna yeni bir soluk getiriyoruz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="news-section py-5">
+    <div class="container">
+        <h3 class="mb-4 text-warning">Son Haberler</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="p-3 border border-secondary rounded">
+                    <h5>08.04.2026 - Site Yayýna Girdi!</h5>
+                    <p>Resmi web sitemiz doganstudio.net bugün itibariyle yayýnda.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="p-3 border border-secondary rounded">
+                    <h5>Geliþtirme Günlüðü #1</h5>
+                    <p>Yeni mobil oyunumuzun Unity SDK entegrasyonlarý tamamlandý.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h3 class="mb-4">Oyunlarýmýz</h3>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card game-card text-white">
+                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Jet Sim">
+                <div class="card-body">
+                    <h5 class="card-title">Jet Simulator</h5>
+                    <p class="card-text small">Gerçekçi mobil uçuþ deneyimi.</p>
+                    <a href="#" class="btn btn-sm btn-outline-warning">Ýncele</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center bg-black mt-5">
+    <p>Bize Ulaþýn</p>
+    <h4 class="text-warning">iletisim@doganstudio.net</h4>
+    <p class="mt-4 text-muted small">&copy; 2026 Dogan Studio. Tüm haklarý saklýdýr.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
