@@ -416,5 +416,22 @@
             handleLoadMoreVisibility('news-grid', 'news-load-more');
         });
     </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6IatN1HEuu5V-O-3Nsom5-JyV-YM_IjQ",
+            authDomain: "dogannnstudio.firebaseapp.com",
+            projectId: "dogannnstudio",
+            storageBucket: "dogannnstudio.firebasestorage.app",
+            messagingSenderId: "107764326887",
+            appId: "1:107764326887:web:f3574a567e8f1ac5a39d42",
+            measurementId: "G-9N1QM90FTY"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        console.log("Firebase devrede patron!");
+    </script>
 </body>
 </html>
