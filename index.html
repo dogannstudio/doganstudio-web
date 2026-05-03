@@ -4,244 +4,569 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogan Studio | Premium Gaming</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ==========================================================================
-           1. CORE DESIGN TOKENS (Gece Modu - Varsayýlan)
+           1. CORE DESIGN TOKENS (Gece Modu - VarsayÄ±lan)
            ========================================================================== */
         :root {
-            /* SÝTENÝN GENEL RENKLERÝ */
+            /* SÄ°TENÄ°N GENEL RENKLERÄ° */
             --bg-base: #000000;
             --bg-surface: #111112;
             --bg-surface-hover: #1d1d1f;
-            
             --text-primary: #f5f5f7;
             --text-secondary: #86868b;
             --text-muted: #515154;
-            
             --accent-color: #ffffff;
             --border-color: rgba(255, 255, 255, 0.08);
-            
-            /* Ýlk sayfa (Hero) arka planý ve parlama */
+            /* Ä°lk sayfa (Hero) arka planÄ± ve parlama */
             --hero-gradient: radial-gradient(circle at center, #1a1a1e 0%, #000000 70%);
-            --glow-shadow: 0 0 25px rgba(255, 255, 255, 0.2); 
-            
+            --glow-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
             /* ==================================================================
-               SABÝT MENÜ RENKLERÝ (Gündüz modundan ASLA etkilenmez)
+               SABÄ°T MENÃœ RENKLERÄ° (GÃ¼ndÃ¼z modundan ASLA etkilenmez)
                ================================================================== */
             --nav-bg: rgba(20, 20, 22, 0.5);
             --nav-text: #f5f5f7;
             --nav-border: rgba(255, 255, 255, 0.08);
             --nav-glow: 0 0 15px rgba(255, 255, 255, 0.2);
-            
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
             --transition-smooth: all 0.5s var(--ease-out-expo);
         }
 
         /* ==========================================================================
-           2. GÜNDÜZ MODU (Sadece Gövde Deðiþir, Menü Sabit Kalýr)
+           2. GÃœNDÃœZ MODU (Sadece GÃ¶vde DeÄŸiÅŸir, MenÃ¼ Sabit KalÄ±r)
            ========================================================================== */
         html[data-theme="light"] {
             --bg-base: #ffffff;
             --bg-surface: #f5f5f7;
             --bg-surface-hover: #e5e5ea;
-            
-            --text-primary: #1d1d1f; 
+            --text-primary: #1d1d1f;
             --text-secondary: #86868b;
             --text-muted: #a1a1a6;
-            
             --accent-color: #000000;
             --border-color: rgba(0, 0, 0, 0.08);
-
-            /* Gündüz modu için ilk sayfa bembeyaz olur ve siyah ýþýk saçar */
+            /* GÃ¼ndÃ¼z modu iÃ§in ilk sayfa bembeyaz olur ve siyah Ä±ÅŸÄ±k saÃ§ar */
             --hero-gradient: radial-gradient(circle at center, #ffffff 0%, #e0e0e0 100%);
             --glow-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-            
-            /* DÝKKAT: --nav-... deðiþkenleri burada yok! O yüzden menü karanlýk kalýr. */
+            /* DÄ°KKAT: --nav-... deÄŸiÅŸkenleri burada yok! O yÃ¼zden menÃ¼ karanlÄ±k kalÄ±r. */
         }
 
         /* ==========================================================================
            3. GLOBAL RESET
            ========================================================================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        
-        html { background-color: var(--bg-base); scroll-behavior: smooth; transition: background-color 0.5s ease; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-primary); line-height: 1.4; overflow-x: hidden; transition: color 0.5s ease; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #888; }
+        html {
+            background-color: var(--bg-base);
+            scroll-behavior: smooth;
+            transition: background-color 0.5s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.4;
+            overflow-x: hidden;
+            transition: color 0.5s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 10px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #888;
+            }
 
         /* ==========================================================================
            4. PREMIUM NAVIGATION BAR (Dokunulmaz Sabit Renkler)
            ========================================================================== */
         .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 64px;
-            /* Hep sabit karanlýk cam rengi */
-            background: var(--nav-bg); 
-            backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            /* Hep sabit karanlÄ±k cam rengi */
+            background: var(--nav-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid var(--nav-border);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 9999;
             animation: slideDownIntro 1s var(--ease-out-expo) forwards;
-            transform: translateY(-100%); opacity: 0;
+            transform: translateY(-100%);
+            opacity: 0;
         }
 
-        .nav-left { display: flex; align-items: center; gap: 40px; }
-        
-        /* Logoya ve Menüye sabit beyazýmsý renk atandý */
-        .brand-logo { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--nav-text); cursor: pointer; transition: opacity 0.3s ease; }
-        .brand-logo:hover { opacity: 0.7; }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
 
-        .nav-links { display: flex; gap: 24px; }
-        .nav-item { font-size: 12px; font-weight: 400; color: var(--nav-text); opacity: 0.8; letter-spacing: 0.01em; transition: var(--transition-smooth); }
-        .nav-item:hover { opacity: 1; color: #fff; transform: translateY(-2px); }
+        /* Logoya ve MenÃ¼ye sabit beyazÄ±msÄ± renk atandÄ± */
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--nav-text);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
 
-        /* Sabit Temalý Tema Deðiþtirici Buton */
-        .nav-right { display: flex; align-items: center; }
+            .brand-logo:hover {
+                opacity: 0.7;
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-item {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--nav-text);
+            opacity: 0.8;
+            letter-spacing: 0.01em;
+            transition: var(--transition-smooth);
+        }
+
+            .nav-item:hover {
+                opacity: 1;
+                color: #fff;
+                transform: translateY(-2px);
+            }
+
+        /* Sabit TemalÄ± Tema DeÄŸiÅŸtirici Buton */
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
         .theme-toggle-btn {
-            background: transparent; border: 1px solid var(--nav-border); color: var(--nav-text);
-            font-size: 14px; cursor: pointer; transition: var(--transition-smooth);
-            padding: 8px 16px; border-radius: 30px; display: flex; align-items: center; gap: 8px;
+            background: transparent;
+            border: 1px solid var(--nav-border);
+            color: var(--nav-text);
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .theme-toggle-btn:hover { 
-            transform: scale(1.05); 
-            background: var(--nav-text); 
-            color: #000; 
-            border-color: transparent;
-            box-shadow: var(--nav-glow); 
-        }
+
+            .theme-toggle-btn:hover {
+                transform: scale(1.05);
+                background: var(--nav-text);
+                color: #000;
+                border-color: transparent;
+                box-shadow: var(--nav-glow);
+            }
 
         /* ==========================================================================
-           5. HERO SECTION (Iþýk Efektli, Gündüz Moduna Duyarlý)
+           5. HERO SECTION (IÅŸÄ±k Efektli, GÃ¼ndÃ¼z Moduna DuyarlÄ±)
            ========================================================================== */
         .hero {
-            position: relative; height: 100vh; width: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            overflow: hidden; background: transparent; 
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
         }
 
         .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
             background: var(--hero-gradient);
             transition: background 0.5s ease;
             animation: pulse 10s ease-in-out infinite alternate;
         }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.05); opacity: 1; } }
 
-        .hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
 
         .hero-title {
-            font-size: 5.5vw; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-primary);
+            font-size: 5.5vw;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            color: var(--text-primary);
             animation: fadeDownIntro 1.2s var(--ease-out-expo) 0.3s forwards;
-            transform: translateY(-40px); opacity: 0;
+            transform: translateY(-40px);
+            opacity: 0;
             transition: color 0.5s ease;
         }
 
         .btn-primary {
-            display: inline-block; background: var(--text-primary); color: var(--bg-base);
-            padding: 14px 32px; border-radius: 40px; font-size: 14px; font-weight: 600;
+            display: inline-block;
+            background: var(--text-primary);
+            color: var(--bg-base);
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
             transition: transform 0.3s var(--ease-out-expo), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
             animation: fadeDownIntro 1.2s var(--ease-out-expo) 0.5s forwards;
-            transform: translateY(-40px); opacity: 0;
+            transform: translateY(-40px);
+            opacity: 0;
             border: 1px solid transparent;
         }
-        .btn-primary:hover { 
-            transform: scale(1.05) translateY(-2px); 
-            background: var(--text-secondary); 
-            color: #fff;
-            box-shadow: var(--glow-shadow); /* Siyah veya Beyaz ýþýk yayar */
+
+            .btn-primary:hover {
+                transform: scale(1.05) translateY(-2px);
+                background: var(--text-secondary);
+                color: #fff;
+                box-shadow: var(--glow-shadow); /* Siyah veya Beyaz Ä±ÅŸÄ±k yayar */
+            }
+
+        @keyframes slideDownIntro {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        @keyframes slideDownIntro { to { transform: translateY(0); opacity: 1; } }
-        @keyframes fadeDownIntro { to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeDownIntro {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
         /* ==========================================================================
            6. SECTION LAYOUTS
            ========================================================================== */
-        .section { padding: 140px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-header { margin-bottom: 60px; }
-        .section-title { font-size: 40px; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 16px; transition: color 0.5s ease; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); font-weight: 300; transition: color 0.5s ease; }
+        .section {
+            padding: 140px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            transition: color 0.5s ease;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            transition: color 0.5s ease;
+        }
 
         /* ==========================================================================
-           7. GRID & CARD COMPONENTS (Animasyonlar Mükemmel Kaldý)
+           7. GRID & CARD COMPONENTS (Animasyonlar MÃ¼kemmel KaldÄ±)
            ========================================================================== */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
 
         .card {
-            background: var(--bg-surface); border-radius: 18px; overflow: hidden;
-            display: flex; flex-direction: column; cursor: pointer; position: relative;
+            background: var(--bg-surface);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
             transition: background 0.5s ease, transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease, border-color 0.5s ease;
             border: 1px solid transparent;
         }
-        
-        .card::before {
-            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-20deg); transition: left 0.7s ease; z-index: 10; pointer-events: none;
-        }
+
+            .card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -150%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 100%);
+                transform: skewX(-20deg);
+                transition: left 0.7s ease;
+                z-index: 10;
+                pointer-events: none;
+            }
 
         html[data-theme="light"] .card::before {
             background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 50%, rgba(0,0,0,0) 100%);
         }
 
         .card:hover {
-            background: var(--bg-surface-hover); transform: scale(1.03) translateY(-5px);
-            border: 1px solid var(--border-color); box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background: var(--bg-surface-hover);
+            transform: scale(1.03) translateY(-5px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        .card:hover::before { left: 150%; }
-        html[data-theme="light"] .card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
 
-        .card-image-wrapper { width: 100%; height: 240px; background: rgba(0,0,0,0.05); position: relative; overflow: hidden; border-bottom: 1px solid var(--border-color); transition: border-color 0.5s ease; }
-        .card-image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: transform 0.8s var(--ease-out-expo); }
-        .card:hover .card-image-placeholder { transform: scale(1.05); color: var(--text-secondary); }
-        
-        .card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-label { font-size: 10px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; transition: color 0.3s ease; }
-        .card:hover .card-label { color: var(--text-primary); }
-        .card-title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--text-primary); transition: color 0.5s ease; }
-        .card-desc { font-size: 15px; color: var(--text-secondary); font-weight: 300; line-height: 1.5; transition: color 0.5s ease; }
+            .card:hover::before {
+                left: 150%;
+            }
+
+        html[data-theme="light"] .card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 240px;
+            background: rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.5s ease;
+        }
+
+        .card-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+
+        .card:hover .card-image-placeholder {
+            transform: scale(1.05);
+            color: var(--text-secondary);
+        }
+
+        .card-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-label {
+            color: var(--text-primary);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.5;
+            transition: color 0.5s ease;
+        }
 
         /* ==========================================================================
            8. LOAD MORE BUTTON
            ========================================================================== */
-        .action-container { display: flex; justify-content: center; margin-top: 60px; width: 100%; }
-        .btn-secondary {
-            background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); padding: 12px 28px;
-            border-radius: 40px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.4s var(--ease-out-expo);
+        .action-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+            width: 100%;
         }
-        .btn-secondary:hover { background: var(--text-primary); color: var(--bg-base); border-color: transparent; transform: scale(1.05); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+            .btn-secondary:hover {
+                background: var(--text-primary);
+                color: var(--bg-base);
+                border-color: transparent;
+                transform: scale(1.05);
+            }
 
         /* =========================================
            9. ABOUT & FOOTER
            ========================================= */
-        .about-text { font-size: 24px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; max-width: 900px; letter-spacing: -0.01em; transition: color 0.5s ease; }
+        .about-text {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            max-width: 900px;
+            letter-spacing: -0.01em;
+            transition: color 0.5s ease;
+        }
 
-        .footer { padding: 80px 5% 40px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; gap: 30px; transition: border-color 0.5s ease; }
-        .footer-brand { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
-        .social-icons { display: flex; gap: 24px; }
-        .social-icons a { color: var(--text-secondary); font-size: 18px; transition: all 0.4s var(--ease-out-expo); display: inline-block; }
-        .social-icons a:hover { color: var(--text-primary); transform: translateY(-5px) scale(1.1); }
-        .footer-legal { font-size: 12px; color: var(--text-muted); }
+        .footer {
+            padding: 80px 5% 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            transition: border-color 0.5s ease;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 24px;
+        }
+
+            .social-icons a {
+                color: var(--text-secondary);
+                font-size: 18px;
+                transition: all 0.4s var(--ease-out-expo);
+                display: inline-block;
+            }
+
+                .social-icons a:hover {
+                    color: var(--text-primary);
+                    transform: translateY(-5px) scale(1.1);
+                }
+
+        .footer-legal {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
 
         /* ==========================================================================
-           10. AÞAÐIYA SÜZÜLME MOTORU (Tüm Þýklýðýyla Devam Ediyor)
+           10. AÅžAÄžIYA SÃœZÃœLME MOTORU (TÃ¼m ÅžÄ±klÄ±ÄŸÄ±yla Devam Ediyor)
            ========================================================================== */
-        .reveal-down { opacity: 0; transform: translateY(-40px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); will-change: opacity, transform; }
-        .reveal-down.is-visible { opacity: 1; transform: translateY(0); }
+        .reveal-down {
+            opacity: 0;
+            transform: translateY(-40px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+
+            .reveal-down.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
         @media (max-width: 768px) {
-            .nav-left { gap: 20px; } .nav-links { display: none; }
-            .hero-title { font-size: 12vw; } .section { padding: 80px 5%; }
-            .section-title { font-size: 32px; } .about-text { font-size: 18px; }
-            .theme-toggle-btn span { display: none; } 
+            .nav-left {
+                gap: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 12vw;
+            }
+
+            .section {
+                padding: 80px 5%;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .about-text {
+                font-size: 18px;
+            }
+
+            .theme-toggle-btn span {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -258,7 +583,7 @@
             </nav>
         </div>
         <div class="nav-right">
-            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Gece/Gündüz Modu">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Gece/GÃ¼ndÃ¼z Modu">
                 <i class="fa-solid fa-sun"></i>
                 <span>Theme</span>
             </button>
@@ -278,7 +603,7 @@
             <h2 class="section-title">Games</h2>
             <p class="section-subtitle">Our latest interactive experiences.</p>
         </div>
-        
+
         <div class="grid-layout" id="games-grid">
             <div class="card reveal-down">
                 <div class="card-image-wrapper"><div class="card-image-placeholder">Image Placeholder</div></div>
@@ -288,7 +613,7 @@
                     <p class="card-desc">Description will be injected via Admin Panel.</p>
                 </div>
             </div>
-            
+
             <div class="card reveal-down">
                 <div class="card-image-wrapper"><div class="card-image-placeholder">Image Placeholder</div></div>
                 <div class="card-content">
@@ -308,7 +633,7 @@
         <div class="section-header reveal-down">
             <h2 class="section-title">News</h2>
         </div>
-        
+
         <div class="grid-layout" id="news-grid">
             <div class="card reveal-down">
                 <div class="card-image-wrapper"><div class="card-image-placeholder">Image Placeholder</div></div>
@@ -349,15 +674,18 @@
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#"><i class="fa-brands fa-google-play"></i></a>
-            <a href="mailto:iletisim@doganstudio.net"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:info@doganstudio.net"><i class="fa-solid fa-envelope"></i></a>
         </div>
-        <div class="footer-legal">© 2026 Dogan Studio. All rights reserved.</div>
+        <div style="margin-top: 10px;">
+            <a href="gizlilik.html" style="font-size: 13px; color: var(--text-secondary); text-decoration: none; border: 1px solid var(--border-color); padding: 5px 15px; border-radius: 20px; transition: var(--transition-smooth);">Privacy Policy</a>
+        </div>
+        <div class="footer-legal">Â© 2026 Dogan Studio. All rights reserved.</div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- TEMA DEÐÝÞTÝRME MOTORU ---
+
+            // --- TEMA DEÄžÄ°ÅžTÄ°RME MOTORU ---
             const themeBtn = document.getElementById('theme-toggle');
             const htmlTag = document.documentElement;
             const themeIcon = themeBtn.querySelector('i');
@@ -365,19 +693,19 @@
 
             themeBtn.addEventListener('click', () => {
                 if (htmlTag.getAttribute('data-theme') === 'light') {
-                    // Karanlýk Moda Geç
+                    // KaranlÄ±k Moda GeÃ§
                     htmlTag.removeAttribute('data-theme');
                     themeIcon.className = 'fa-solid fa-sun';
                 } else {
-                    // Gündüz Moduna Geç
+                    // GÃ¼ndÃ¼z Moduna GeÃ§
                     htmlTag.setAttribute('data-theme', 'light');
                     themeIcon.className = 'fa-solid fa-moon';
                 }
             });
 
-            // --- DÝNAMÝK SIRALI SÜZÜLME (Staggered Scroll Down) ---
+            // --- DÄ°NAMÄ°K SIRALI SÃœZÃœLME (Staggered Scroll Down) ---
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-            
+
             let delayCounter = 0;
             let delayTimer = null;
 
@@ -387,10 +715,10 @@
                         entry.target.style.transitionDelay = `${delayCounter * 0.15}s`;
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
-                        
+
                         delayCounter++;
                         clearTimeout(delayTimer);
-                        delayTimer = setTimeout(() => { delayCounter = 0; }, 50); 
+                        delayTimer = setTimeout(() => { delayCounter = 0; }, 50);
                     }
                 });
             }, observerOptions);
