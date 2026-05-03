@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Dogan Studio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CORE DESIGN TOKENS
+           ========================================================================== */
+        :root {
+            --bg-base: #000000;
+            --bg-surface: #111112;
+            --bg-surface-hover: #1d1d1f;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-muted: #515154;
+            --accent-color: #ffffff;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(20, 20, 22, 0.5);
+            --nav-text: #f5f5f7;
+            --nav-border: rgba(255, 255, 255, 0.08);
+            --nav-glow: 0 0 15px rgba(255, 255, 255, 0.2);
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --transition-smooth: all 0.5s var(--ease-out-expo);
+        }
+
+        html[data-theme="light"] {
+            --bg-base: #ffffff;
+            --bg-surface: #f5f5f7;
+            --bg-surface-hover: #e5e5ea;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-muted: #a1a1a6;
+            --accent-color: #000000;
+            --border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            background-color: var(--bg-base);
+            scroll-behavior: smooth;
+            transition: background-color 0.5s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: color 0.5s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background: var(--nav-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--nav-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 9999;
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--nav-text);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+            .brand-logo:hover {
+                opacity: 0.7;
+            }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--nav-border);
+            color: var(--nav-text);
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+
+            .theme-toggle-btn:hover {
+                transform: scale(1.05);
+                background: var(--nav-text);
+                color: #000;
+                border-color: transparent;
+                box-shadow: var(--nav-glow);
+            }
+
+        /* POLICY SECTION */
+        .section {
+            padding: 140px 5% 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 60px;
+        }
+
+        .policy-content h3 {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .policy-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .policy-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .policy-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .policy-content strong {
+            color: var(--text-primary);
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 60px 5% 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-legal {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .reveal-down {
+            opacity: 0;
+            transform: translateY(-40px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+
+            .reveal-down.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 100px 5% 60px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="brand-logo">Dogan Studio</a>
+        <button id="theme-toggle" class="theme-toggle-btn">Theme</button>
+    </header>
+
+    <section class="section">
+        <div class="reveal-down">
+            <h1 class="section-title">Privacy Policy</h1>
+            <p class="section-subtitle">Last Updated: May 3, 2026</p>
+        </div>
+
+        <div class="policy-content reveal-down">
+            <p>At <strong>Dogan Studio</strong>, we are committed to providing high-quality gaming experiences while maintaining the highest standards of user privacy. This Privacy Policy applies to all mobile games and applications developed and published by Dogan Studio.</p>
+
+            <h3>1. Zero Data Collection Policy</h3>
+            <p>Our stüdio operates on a <strong>strict zero-data collection policy.</strong> Our games and applications do not collect, transmit, or store any personal information from our users.</p>
+            <ul>
+                <li>We do not request personal details such as names, email addresses, or phone numbers.</li>
+                <li>We do not require user accounts or registration to access our content.</li>
+                <li>We do not track your location or any other sensitive device information.</li>
+            </ul>
+
+            <h3>2. Ad-Free Commitment</h3>
+            <p>To ensure a pure and uninterrupted gaming experience, our games <strong>do not feature any third-party advertisements.</strong> Because we do not integrate advertising networks, we do not access or share your Advertising ID or any marketing-related data.</p>
+
+            <h3>3. Device Permissions</h3>
+            <p>Our applications only utilize the necessary hardware resources (such as CPU and GPU) required to run the game effectively. We do not request access to your camera, microphone, contacts, or photo library.</p>
+
+            <h3>4. Children's Privacy</h3>
+            <p>Since we do not collect any data or display ads, our applications are safe for users of all ages, including children. We provide a secure environment where parents can feel at ease knowing their children's privacy is protected by default.</p>
+
+            <h3>5. Contact Information</h3>
+            <p>If you have any questions or concerns regarding this policy, please reach out to us at:</p>
+            <p><strong>Email:</strong> info@doganstudio.net</p>
+        </div>
+    </section>
+
+    <footer class="footer reveal-down">
+        <div class="footer-brand">Dogan Studio</div>
+        <div class="footer-legal">© 2026 Dogan Studio. All rights reserved.</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeBtn = document.getElementById('theme-toggle');
+            const htmlTag = document.documentElement;
+
+            themeBtn.addEventListener('click', () => {
+                if (htmlTag.getAttribute('data-theme') === 'light') {
+                    htmlTag.removeAttribute('data-theme');
+                } else {
+                    htmlTag.setAttribute('data-theme', 'light');
+                }
+            });
+
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-down').forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+</html>
